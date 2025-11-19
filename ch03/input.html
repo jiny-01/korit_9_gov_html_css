@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <label for="username">아이디</label>
+      <input type="text" name="" id="username" />
+    </div>
+    <div>
+      <label for="pw">비밀번호</label>
+      <input type="password" name="" id="pw" />
+    </div>
+
+    <table>
+      <tbody>
+        <tr>
+          <td><label for="username2">아이디</label></td>
+          <td><input type="text" id="username2" /></td>
+        </tr>
+        <tr>
+          <td><label for="pw">비밀번호</label></td>
+          <td><input type="password" id="pw2" /></td>
+        </tr>
+        <tr>
+          <td>
+            <table>
+              <tr></tr>
+              <tr>
+                <td>취미1</td>
+                <td>취미2</td>
+                <td>취미3</td>
+              </tr>
+              <tr>
+                <td>
+                  <input type="checkbox" id="soccer" />
+                  <label for="soccer">축구</label>
+                </td>
+                <td>
+                  <input type="checkbox" id="basketball" />
+                  <label for="basketball">농구</label>
+                </td>
+                <td>
+                  <input type="checkbox" id="baseball" />
+                  <label for="baseball">야구</label>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td>가입경로</td>
+          <td>
+            <table>
+              <tbody>
+                <!-- radiobutton : name 을 통일시켜야 하나의 그룹으로 볼 수 있음 -->
+                <tr>
+                  <td>
+                    <input type="radio" name="subPath" id="subPath1" />
+                  </td>
+                  <td>
+                    <label for="subPath1">1. 친구추천</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="radio" name="subPath" id="subPath2" />
+                  </td>
+                  <td>
+                    <label for="subPath2">2. 검색</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="radio" name="subPath" id="subPath3" />
+                  </td>
+                  <td>
+                    <label for="subPath3">3. 영상광고</label>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td>프로필 사진</td>
+          <td><input type="file" accept="image/*" /></td>
+        </tr>
+      </tbody>
+    </table>
+    <div>
+      <button>가입하기</button>
+    </div>
+  </body>
+</html>

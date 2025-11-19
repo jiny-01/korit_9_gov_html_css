@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>고객 문의 접수</h1>
+    <table>
+      <tr>
+        <td><label for="name">이름</label></td>
+        <td><input type="text" id="name" /></td>
+      </tr>
+      <tr>
+        <td><label for="email">이메일</label></td>
+        <td><input type="email" id="email" /></td>
+      </tr>
+      <tr>
+        <td><label for="tel">전화번호</label></td>
+        <td><input type="tel" id="tel" /></td>
+      </tr>
+      <tr>
+        <td><label for="category">문의 유형</label></td>
+        <td>
+          <select id="category">
+            <option value="">선택하세요</option>
+          </select>
+        </td>
+      </tr>
+      <!-- 우선순위 라디오 버튼-->
+      <tr>
+        <td>우선순위</td>
+        <td>
+          <input type="radio" name="Rank" id="rank1" />
+          <label for="rank1">낮음</label>
+
+          <input type="radio" name="Rank" id="rank2" />
+          <label for="rank2">보통</label>
+
+          <input type="radio" name="Rank" id="rank3" />
+          <label for="rank3">높음</label>
+
+          <input type="radio" name="Rank" id="rank4" />
+          <label for="rank4">긴급</label>
+        </td>
+      </tr>
+      <tr>
+        <td><label for="content">문의 내용</label></td>
+        <td><textarea id="content"></textarea></td>
+      </tr>
+      <!-- 알림 수신 동의 체크박스 -->
+      <tr>
+        <td>알림 수신 동의</td>
+        <td>
+          <input type="checkbox" id="email_agree" />
+          <label for="email_agree">이메일 수신 동의</label>
+          <br />
+          <input type="checkbox" id="sms_agree" />
+          <label for="sms_agree">SMS 수신 동의</label>
+        </td>
+      </tr>
+    </table>
+    <button>문의접수</button>
+    <button>초기화</button>
+  </body>
+</html>

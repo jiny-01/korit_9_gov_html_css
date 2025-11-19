@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .p-box {
+        display: flex;
+        /* 자식 요소들이 알아서 우측으로 정렬됨 */
+        flex-flow: row wrap;
+        /* 알아서 다음 줄로 넘어감 */
+        /* justify-content: space-around; */
+        /* 동일 간격으로  간격 벌려줌*/
+        justify-content: center;
+        align-content: center;
+        /* align-items: center; */
+        box-sizing: border-box;
+        border: 1px solid #dbdbdb;
+        /* padding: 10px; */
+        width: 550px;
+        height: 350px;
+        /* letter-spacing: -5px;
+        word-spacing: 0; */
+        /* 이거 대신 부모 요소에 display:flex 적용해줌 */
+        overflow: hidden;
+      }
+
+      .c-box {
+        flex-shrink: 0;
+        display: inline-block;
+        box-sizing: border-box;
+        border: 1px solid #dbdbdb;
+        width: 100px;
+        height: 100px;
+      }
+
+      .p-box2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        border: 1px solid #dbdbdb;
+        width: 300px;
+        height: 300px;
+      }
+
+      .c-box2 {
+        width: 100px;
+        height: 100px;
+        background-color: rgb(255, 185, 252);
+      }
+    </style>
+    
+  </head>
+  <body>
+    <div class="p-box2">
+        <div class="c-box2"></div>
+    </div>
+
+    <div class="p-box">
+      <div class="c-box"></div>
+      <div class="c-box"></div>
+      <div class="c-box"></div>
+      <div class="c-box"></div>
+      <div class="c-box"></div>
+      <div class="c-box"></div>
+      <div class="c-box"></div>
+      <div class="c-box"></div>
+      <div class="c-box"></div>
+    </div>
+    
+  </body>
+</html>

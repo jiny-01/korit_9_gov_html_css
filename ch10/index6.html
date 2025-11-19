@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .btn-box {
+        /* padding: 12px 24px; */
+        /* background-color: #e3e3e3; */
+        border: none;
+        display: flex;
+        /* align-items: center; */
+        /* justify-content: center; */
+        cursor: pointer;
+      }
+
+      .btn {
+        background-color: beige;
+        width: 80px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #ccc;
+
+        /* margin: 20px; */
+      } p
+
+
+      .btn + .btn {
+        margin-left: -1px;
+      }
+
+      .btn:first-child {
+        border-radius: 8px 0 0 8px;
+        /* border: none; */
+        border-right: none;
+      }
+
+      .btn:nth-of-type(2) {
+        border-left: none;
+        border-right: none;
+      }
+
+      .btn:last-child {
+        border-radius: 0 8px 8px 0;
+        /* border: none; */
+        border-left: none;
+      }
+
+      /*  */
+      /* .btn {
+        display: inline-block;
+        border: 1px solid #1976d2;
+        border-radius: 4px;
+        padding: 5px 15px;
+        font-weight: 600;
+        color: #1976d2;
+        cursor: pointer;
+      } */
+    </style>
+  </head>
+  <body>
+    <div class="btn-box">
+      <div class="btn">1번</div>
+      <div class="btn">2번</div>
+      <div class="btn">3번</div>
+    </div>
+  </body>
+</html>

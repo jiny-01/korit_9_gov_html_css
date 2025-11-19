@@ -1,0 +1,52 @@
+.box1 {
+  box-sizing: border-box;
+  margin: 50px;
+  border: 5px solid transparent;
+  /* 패딩을 border 영역까지 확장하려면 border 의 속성을
+        색상 - transparent 나 #00000000 주면 됨 */
+
+  padding: 25px;
+  width: 100px;
+  height: 100px;
+  background-color: #000;
+  background-clip: border-box;
+  /* 기본값 : border-box */
+}
+
+.box2 {
+  box-sizing: border-box;
+  border: 1px solid #dbdbdb;
+  padding: 100px;
+  width: 300px;
+  height: 300px;
+  background-color: skyblue;
+}
+
+.box3 {
+  box-sizing: border-box;
+  border: 1px solid #dbdbdb;
+  width: 100%;
+  height: 100%;
+  background-color: yellow;
+}
+
+.button {
+  margin: 15px;
+  border: 1px solid #dbdbdb;
+  /* border-width: 1px 2px 3px 4px; */
+  border-radius: 5px 10px;
+  /* 둥글기 - 대각선으로 대칭 적용됨 top-left 부터 시계방향 */
+  padding: 20px 15px 10px;
+  /* 값이 없을 경우 대칭되는 것은 복제됨 좌-우 / 상-하 */
+  width: fit-content;
+  height: fit-content;
+  background-color: #fafafa;
+  cursor: pointer;
+}
+
+.circle {
+  border-radius: 50%;
+  width: 150px;
+  height: 300px;
+  background-color: yellowgreen;
+}

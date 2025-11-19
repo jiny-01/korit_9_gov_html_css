@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- 태그 < 클래스 < id 선택자 순으로 우선순위가 높음 -->
+    <style>
+      h2 {
+        color: red;
+      }
+      h1 {
+        font-size: 100px;
+        color: blue;
+      }
+      input {
+        width: 300px;
+      }
+
+      .c1 {
+        color: green;
+      }
+
+      li {
+        color: pink;
+        font-size: 20px;
+      }
+
+      #id1 {
+        color: blueviolet;
+      }
+
+      .p-content {
+        color: aqua !important;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>제목1</h1>
+    <h2>제목2</h2>
+    <h2>제목2</h2>
+    <h2>제목2</h2>
+    <h2>제목2</h2>
+    <h2>제목2</h2>
+    <input type="text" />
+    <input type="text" />
+
+    <ul>
+      <li class="c1" id="id1">김준일</li>
+      <li class="c2">김준이</li>
+      <li class="c3" id="id1">김준삼</li>
+    </ul>
+
+    <p class="p-content" style="color: brown">문서 내용을 입력하세요</p>
+  </body>
+</html>
