@@ -1,0 +1,81 @@
+html {
+  height: 100vh;
+  background-color: #fafafa;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  margin-left: 10px;
+  height: 100%;
+}
+
+.btn-group {
+  /*  버튼 정렬 */
+  display: flex;
+  /* 안에 컨텐츠만큼만 너비잡기 */
+  width: fit-content;
+
+  & > .btn:nth-of-type(1) {
+    border-radius: 3px 0 0 3px;
+  }
+
+  & > .btn:nth-last-of-type(1) {
+    border-radius: 0 3px 3px 0;
+  }
+}
+/* 공통 */
+.btn {
+  border: none;
+  border-radius: 4px;
+  padding: 5px 15px;
+  background-color: #fff;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #fafafa;
+  }
+
+  &:active {
+    background-color: #eeeeee;
+  }
+}
+
+.btn-mustard {
+  background-color: #ffc107;
+
+  &:hover {
+    background-color: #ffc004;
+  }
+
+  &:active {
+    background-color: #ffbf00;
+  }
+}
+
+.btn-error {
+  background-color: #dc3545;
+  color: #ffffff;
+
+  &:hover {
+    background-color: #cc3545;
+  }
+
+  &:active {
+    background-color: #ac3545;
+  }
+}
+
+.btn-black {
+    background-color: #444444;
+    color: #ffffff;
+
+    &:hover {
+        background-color: #333333;
+    }
+
+    &:active {
+        background-color: #111111;
+    }
+}
