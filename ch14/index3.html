@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 함수
+      function fx1() {
+        console.log("함수1 호출");
+      }
+
+      function fx1() {
+        console.log("함수1 호출!!!");
+      }
+
+      fx1();
+
+      const fx2 = fx1;
+      const fx3 = fx2;
+      console.log(typeof fx1); //변수에는 값을 대입할 수 있음
+
+      //함수 자체를 값으로 보기 때문에 가능
+      function fx4() {
+        return function fx5() {
+          console.log("함수5 호출!!!!");
+        };
+      }
+
+      let fx6 = fx4(); //fx4() 의 호출결과 -> fx6
+      let fx7 = fx4(); //fx4() 의 호출결과 -> fx7
+      //함수 정의 자체도 값
+      // fx6 , fx7 각각  return fx5() 의 함수 정의가 새로 일어남
+      console.log(fx6);         //fx5() 함수 정의1
+      console.log(fx7);         //fx5() 함수 정의2
+      console.log(fx6 === fx7); //=> flase
+
+      let fx8 = fx4; //fx4 라는 함수명
+      let fx9 = fx4; //fx4 "
+       console.log(fx8 === fx9);  //true
+
+    
+    </script>
+  </body>
+</html>

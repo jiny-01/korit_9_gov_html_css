@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 익명 함수
+      const fx1 = function a() {}; //fx1() 호출하겠단 의미
+
+      const fx2 = function () {}; // 익명함수정의 => fx2() 와 같음
+      fx2();
+
+      function fx3(c) {
+        c();
+      }
+
+      fx3(function b() {});
+      fx3(function () {});
+
+      fx3(() => {});
+
+      const fx4 = () => {};
+
+      //1. 안의 함수도 function
+      function main() {
+        function add(a, b) {
+          return a + b;
+        }
+
+        console.log(add(10, 20));
+      }
+
+      //2. 안의 함수 화살표함수로
+      function main2() {
+        const add = (a, b) => {
+          return a + b;
+        };
+
+        console.log(add(10, 20));
+      }
+
+      //콜백 함수를 쓸 땐 화살표 함수만 쓸 것
+      setTimeout(() => {
+        console.log("3초 뒤에 출력");
+      }, 3000);
+
+
+      console.log("3초 뒤에 출력???????");
+
+      //setTimeout() 호출 
+      //3초 후에 실행될 콜백(() => console.log("3초 뒤에 출력")) 예약 -> 바로 실행하지 않음
+      //다음 줄 먼저 실행 → console.log("3초 뒤에 출력???????")
+      //즉시 출력됨
+    </script>
+  </body>
+</html>

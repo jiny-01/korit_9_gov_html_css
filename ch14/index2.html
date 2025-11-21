@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 호이스팅
+      // : 코드의 실행보다 선언, 정의가 먼저 이루어짐
+      a = 10;
+      b = 20;
+
+      console.log(a);
+
+      var a;
+
+      print();
+
+      var a;
+      let b;
+      //변수 선언 => let (var 쓰지말것)
+      //let 은 값을 재할당할 수 있는 변수를 선언할 때 사용
+      //호이스팅, 재할당도 막음 - 오류방지 
+
+      const c = 10; 
+      //상수 선언 => const
+      //선언 즉시 초기화
+
+      function print() {
+        console.log("출력!!!");
+      }
+
+    </script>
+  </body>
+</html>
