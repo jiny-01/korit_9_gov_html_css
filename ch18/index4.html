@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const user = {
+        username: "test",
+        password: "1234",
+        role: {
+          roleName: "ROLE_USER",
+          roleNameKor: "사용자권한",
+        },
+      };
+
+      const { username, role } = user;
+      const { roleName } = role;
+
+      const { roleNameKor } = user.role; //user 안에 role이 객체
+
+      const newUser = {
+        username: "test2",
+        password: "1111",
+        role: {
+          ...user.role, //user.role 안에 있는 것 복제
+        },
+      };
+
+      console.log(username, role, roleName, roleNameKor);
+      console.log();
+    </script>
+  </body>
+</html>

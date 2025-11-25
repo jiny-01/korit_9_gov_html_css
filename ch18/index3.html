@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //구조분해 (비구조할당)
+      const user = {
+        username: "test",
+        password: "1234",
+      };
+
+      const username = user.username;
+      const password = user.password;
+
+      const student = {
+        studentName: "김준일",
+        studentAge: 32,
+        studentAddress: "동래구",
+      };
+
+      const { studentName, studentAge } = student;
+
+      //#1) student 를 매개변수로 받음
+      function print1(student) {
+        console.log(student.studentName);
+        console.log(student.studentAge);
+      }
+      print1(student);
+
+      //#2)
+      function print2(studentName, studentAge) {
+        console.log(studentName);
+        console.log(studentAge);
+      }
+      print2(student.studentName, student.studentAge);
+
+      //#3) 구조분해 - 합친 거
+      function print3({ studentName, studentAge }) {
+        console.log(studentName);
+        console.log(studentAge);
+      }
+      print3(student);
+
+      const { studentName:name, studentAge:age } = student;   //키 값으로만 가져올 수 있음
+      console.log(name, age); 
+
+    </script>
+  </body>
+</html>

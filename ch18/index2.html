@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // || :  true -> 1번 값  /  false -> 2번 값   0: false
+      console.log(1 || 2); //1
+      console.log(11 || 21); //11
+      console.log(0 || 21); //21
+
+      //& : 앞에 가 false 면 1번 값 /
+      //false면 그대로 반환하고, true면 뒤의 값
+      console.log("" && 21); //공백
+
+      console.log(0 || 21 || 0); //21 덕분에 true -> 21
+      console.log(11 && 22 && 10); //10
+
+      const a = 1;
+
+      console.log((a % 2 === 0 && "짝수") || "홀수");
+
+      //?? : null 또는 undefined 일 때만 오른쪽 반환
+      const b = null;
+      console.log(b ?? "test"); //b 가 null 이니까 test
+      const c = {};
+      console.log(c ?? "test"); //{} : null 은 아니므로 그대로 c 반환
+    </script>
+  </body>
+</html>
