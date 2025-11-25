@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const username = "test";
+      const password = "1111";
+
+      const user = {
+        username: "test1",
+        password: "1234",
+      };
+
+      const error = {
+        fieldName: "username",
+        errorMessage: "사용자 이름을 확인하세요.",
+      };
+
+      console.log(error.errorMessage + `(${user.username})`);
+      console.log("결과:" + error.errorMessage + `(${user[error.fieldName]})`);
+
+      const student = {
+        name: "김준일",
+        age: 32,
+      };
+
+      console.log(student.name);
+      console.log(student.age);
+      console.log(student["name"]);
+      console.log(student["age"]);
+      console.log(student[0]); //키값
+      console.log(student[1]);
+      //배열은 복수형이므로 students[0] 처럼 변수명으로 구분
+    </script>
+  </body>
+</html>

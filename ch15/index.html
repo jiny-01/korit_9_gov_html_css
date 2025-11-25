@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 클래스
+      // 함수는 덮어쓰기 가능 but 클래스는 덮어쓰기 불가능
+      class User {
+        username = "test";
+        password = "1234";
+      }
+
+      let user = new User();
+      console.log(user);
+      user.username = "test2";
+      console.log(user);
+
+      class User2 {
+        username;
+        password;
+
+        constructor(username, password, setPassword) {
+          this.username = username;
+          this.password = password;
+          this.setPassword = setPassword;
+        }
+
+        //function 키워드 생략 가능
+        setUsername(username) {
+          this.username = username;
+        }
+      }
+
+      let user2 = new User2("test3", "1111", (password) => {
+        user2.password = password;
+      });
+      console.log(user2);
+      user2.setUsername("test4");
+      console.log(user2);
+      user2.setPassword("3333");
+      console.log(user2);
+
+      const user3 = {
+        username: "test1",
+        password: "1234",
+        setUsername: (username) => (user3.username = username), // this. 불가능, 직접 객체 참조를 해야함
+        setPassword: (password) => {
+          this.password = password;
+        },  //불가능
+        // setPassword: (password) => {user3.password = password}  //가능 - arrow 쓰면 직접 객체 참조해줘야함 -> 클래스 안에서 함수 주소를 참조하는 개념
+
+        // setUsername: function (username) {this.username = username},  //function 쓰면 this 쓸 수 있음 - 함수 안에서 만들어져서 가능
+      };
+
+      console.log(user3);
+      user3.setUsername("test2");
+      console.log(user3);
+    </script>
+  </body>
+</html>

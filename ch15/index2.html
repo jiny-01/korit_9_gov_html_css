@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // spread 문법 (전개연산자)
+      // (1,2), (3,4)
+      // 자바의 map 과 유사 -> 덮어씀
+      class A {
+        data1;
+        data2;
+        constructor(data1, data2) {
+          this.data1 = data1;
+          this.data2 = data2;
+        }
+      }
+
+      let a1 = new A(1, 2);
+      let a2 = new A(3, 4);
+
+      let b = {
+        data1: null,
+        data2: null,
+      };
+
+      let b1 = {
+        ...b,
+        data1: 1,
+        data2: 2,
+      };
+
+      //깊은 복사
+      let b2 = {
+        ...b,
+      };
+
+      //주소값만 대입 => 얕은 복사
+      let b3 = b; // 주소가 다름
+      // b 주소 100이라 하면 b3 는 100
+      //b2 -> b2 에 spread 를 쓰면 값만 복제된 것일 뿐 주소는 달라짐  => 깊은 복사
+      //b3 - 주소값만 대입 => 얕은 복사
+
+      console.log(a1); //A
+      console.log(a2); //A
+      console.log(b1); //Object
+      console.log(b2); //Object
+
+      const student = {
+        name: null,
+        age: 0,
+        address: "",
+      };
+
+      const name = prompt("이름");
+      const age = prompt("나이");
+      const address = prompt("주소");
+      const gender = prompt("성별");
+
+      const student1 = {
+        ...student,
+        name: name,
+        age: age,
+        address: address,
+        gender: gender,
+      };
+
+      console.log(student1);
+
+      //변수명과 값 같으면 하나로 줄일 수 있음
+      const student2 = {
+        ...student,
+        address,
+        gender,
+      };
+
+      console.log(student2);
+    </script>
+  </body>
+</html>
