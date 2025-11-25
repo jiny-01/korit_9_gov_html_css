@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //여러 개의 Promise - 배열로 받음
+      //promise all 은 순서보장
+      Promise.all([
+        new Promise((rs) => rs(10)), //10 리턴하는 promise
+        new Promise((rs) => rs(20)),
+        new Promise((rs) => rs(30)),
+        new Promise((rs) => rs(40)),
+      ]).then((values) => {
+        console.log(values);
+      });
+      //출력 : [10, 20, 30, 40]
+
+      //=====================================================================
+      //#1) Promise 들이 모두 resolve 일 때
+      //Promise.all은 모든 Promise가 끝날 때까지 기다림
+      //순서는 배열 순서 그대로
+      //모든 promise 가 동작해야 then 실행하겠단 의미
+      //젤 늦게 오는 녀석까지 기다려야함 -> 동기처리와 비슷하다 볼 수 있음
+      //Promise.all은 가장 느린 Promise(여기선 2번 프로미스의 시간인 3초)를 기다림
+
+      console.log("==========================");
+      Promise.all([
+        new Promise((rs) => {
+          console.log(1);
+          rs(100);
+        }),
+        new Promise((rs) => {
+          //2번 Promise는 3초 뒤에 resolve
+          console.log(2);
+          setTimeout(() => rs(200), 3000);
+        }),
+        new Promise((rs) => {
+          console.log(3);
+          rs(300);
+        }),
+      ]).then((values) => {
+        console.log(values);
+      });
+
+      //모든 promise 가 동작해야 then 실행하겠단 의미
+      //젤 늦게 오는 녀석까지 기다려야함 -> 동기처리와 비슷하다 볼 수 있음
+      //결과 배열의 순서는 실행 순서가 아니라 배열 순서 그대로
+      //출력: 1 2 3 [100, 200, 300]
+
+      //=====================================================================
+      //#3) reject가 있으면 Promise.all은 즉시 실패
+      //Promise.all은 하나라도 reject되면 즉시 실패
+      //뒤의 resolve나 reject(200), resolve(300)은 의미 없음
+      //동기코드인 1, 2, 3 만 출력되고 종료 직전인 rj(100) 에 의해 100까지만 출력.
+      //출력 -> 1 2 3 100
+
+      Promise.all([
+        new Promise((rs, rj) => {
+          console.log(1); //일단 1출력
+          rj(100); //즉시 reject(100) 발생 -> 여기서 즉시 종료
+        }),
+        new Promise((rs, rj) => {
+          console.log(2);
+          setTimeout(() => rj(200), 3000); //reject(200)과
+        }),
+        new Promise((rs, rj) => {
+          console.log(3);
+          rs(300); //resolve(300)는 의미 없음 -> promise 이미 reject 상태 (1번에서)
+        }),
+      ])
+        .then((values) => {
+          console.log(values);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    </script>
+  </body>
+</html>

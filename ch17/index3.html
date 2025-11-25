@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log("a1");
+      const p1 = new Promise((rs, rj) => {
+        console.log(1);
+        rs(1 * 10);
+      });
+
+      console.log("a2");
+      const p2 = new Promise((rs, rj) => {
+        console.log(2);
+        rs(2 * 10);
+      });
+
+      console.log("a3");
+      const p3 = new Promise((rs, rj) => {
+        console.log(3);
+        rs(3 * 10);
+      });
+
+      console.log("a4");
+      const p4 = p1.then((v) => {
+        //p1 에다 나중에 실행할 것을 예약해둠, p1 의 resolve 가 호출되었을 떄
+        console.log(v); //v는 p1의 resolve 값  v = 10 임
+        return v * 10; // return 도 resolve -> 즉 return 값 = 매개변수의 값  => return 값 : 100
+      });
+
+      console.log("a5");
+      const p5 = p2.then((v) => {
+        console.log(v);
+        return v * 10;
+      });
+
+      console.log("a6");
+      const p6 = p3.then((v) => {
+        console.log(v);
+        return v * 10;
+      });
+
+      console.log("a7");
+      const p7 = p4.then((v) => {
+        console.log(v); //v : p4 의 리턴값 => 100
+      });
+
+      console.log("a8");
+      const p8 = p5.then((v) => {
+        console.log(v); //v : p5 의 리턴값 => 200
+      });
+
+      console.log("a9");
+      const p9 = p6.then((v) => {
+        console.log(v); //v : p6 의 리턴값 => 300
+      });
+
+      //일단 동기인 a1 ~ a9 까지 출력하면서 각 단계에 promise 생성
+      //2단계 - p1 의 promise 부터 resolve 호출함 -> then 실행됨
+      //p1.then → v = 10
+      //p2.then → v = 20
+      //p3.then → v = 30 실행
+      //p4 -> p1.then의 return 값 = 100
+      //p5 ->  p2.then의 return 값 = 200
+      //p6 -> p3.then의 return 값 = 300
+    </script>
+  </body>
+</html>

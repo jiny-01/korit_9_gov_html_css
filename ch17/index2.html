@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /**
+       * Promise
+       *
+       *
+       *
+       */
+      //함수 정의 executor 함수
+      const executor = (resolve, reject) => {
+        console.log(1);
+        console.log(2);
+        setTimeout(() => resolve(), 3000); //3초 뒤 resolve 실행 -> 이때 resolve 가 실행되어야 콜백함수 실행
+        resolve(); //여기서 resolve 호출되었음을 확인했기 때문에 then 의 콜백함수 실행
+      };
+      new Promise(executor).then(() => {
+        console.log(6);
+      }); //Promise 생성
+      //생성될 때 무조건 함수 호출 -> executor 호출됨과 동시에 1, 2 실행
+      console.log("1번째 resolve 호출됨 - 3 출력 콜백");
+      console.log(3);
+
+      new Promise((resolve, reject) => {
+        console.log(4);
+        console.log(5);
+        resolve(); //resolve 호출되었으므로 then 안의 콜백함수인 7 tlfgod
+      }).then(() => {
+        // console.log("2번째 resolve 호출됨 - 7 출력 콜백");
+        console.log(7);
+      });
+      //resolve()를 호출해도 then()의 콜백은 바로 실행되지 않음 - resolve: 예약, 등록 then 안의 콜백함수: 실행
+      //resolve 가 정상적으로 호출이 되었다면 then 안의 콜백함수를 실행하라고 등록을 해둠 (미뤄두기, 예약만)
+      //then 이 실행되는 것이 아닌 동기동작 우선으로 3 출력됨
+      //2번째 promise 에서 4, 5 실행하고 then 안에 7 출력하기로 등록해둠
+      //=> resolve 가 호출되어야 then 안의 콜백함수 실행됨
+
+      new Promise((resolve, reject) => {
+        console.log("Promise 생성");
+        setTimeout(() => {
+          const name = prompt("이름입력");
+          if (!name) {
+            reject("오류");
+            return;
+          }
+
+          resolve(name);
+        }, 5000);
+      })
+        .then((name) => {
+          console.log(8);
+          console.log(name);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    </script>
+  </body>
+</html>

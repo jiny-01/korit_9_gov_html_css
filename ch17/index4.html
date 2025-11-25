@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // #1) resolve 먼저, catch 무시 -> then으로
+      new Promise((rs, rj) => {
+        console.log(1);
+        rs(10); //resolve 되었으므로
+        rj(10); //reject 무시됨
+        console.log("오류생성");
+      })
+        //catch 가 먼저 왔지만 현재 resolve 상태이므로 실행안됨 => 2번째 promise 로 넘김
+        .catch((v) => {
+          console.log(v);
+        })
+        //여기서 then 은 catch 에서 리턴한 객체의 리턴값에 then 을 거는 것
+        //catch가 return한 값을 받음
+        //=> catch가 실행되지 않았으므로 catch에서 받은 값 없음 -> v = undefined
+        .then((v) => {
+          console.log("resolve 호출");
+          console.log(v); //undefined 뜰 것
+        });
+      //.then()은 원래 Promise의 resolve 값과 직접 연결되지 않음
+      // => 1번쨰 Promise 의 resolve 와 연결된 것이 아님을 주의
+
+      //출력
+      //1 오류생성 resolve 호출  undefined
+
+      //promise 안에서 reject 호출되면 바로 예외처리 - 그다음 코드 실행막음
+      //큐에 들어가는 건 먼저 호출되는 녀석이 먼저 들어감
+
+      //catch 가 먼저 왔는데 resolve 가 먼저 실행되므로 catch 가 처리할 수 있는 범위가 아니라서 넘김 ->
+      //2번째 Promise 의then 으로 넘어감
+
+      //=> 즉 1번 promise 의 catch = 2번 promise 의 then 같은 레벨?
+      //Promise1 ---resolve---> (catch)-실행안됨 ---Promise2 의 resolve---> then
+
+      //===================================================================================================
+      //#2) reject 먼저 -> catch 실행 -> catch return값 받아서 바로 아래 then 실행
+      new Promise((rs, rj) => {
+        console.log(1);
+        rj(10);
+        rs(10); //이미 reject 가 호출되었으므로 resolve 무시됨
+        console.log("오류생성");
+      })
+        .catch((v) => {
+          //v : reject 값인 10
+          //오류가 나면 리턴값(10000)으로 대체한다는 것
+          console.log("reject 호출");
+          console.log(v);
+          return 10000; //catch- 새 Promise(resolve(10000)) 를 반환
+          //catch 지만 리턴 자체를 promise, 즉 새로운 또 하나의 resolve 라고 볼 수 있음
+        })
+        //catch 에서 리턴한 값을 받음
+        .then((v) => {
+          console.log("resolve 호출"); //여기서 v: catch 에서 리턴해주는 값
+          console.log(v); // 10000
+        });
+
+      //then 은 무조건 동작하는데 resolve 먼저면
+      // -> 바로 then / reject 먼저면 catch 타고 then -> 이때 then 이 받는 건 catch 에서 리턴한 값을 받음
+
+      //reject 우선 발생 -> catch 실행
+      //catch - 에러 처리하고 리턴값 반환해줌
+      //그래서 다음 then은 reject가 아니라 catch 에서 리턴한 값인 resolve(10000) 으로 받음!!!
+
+      //1 오류생성 -(catch 실행)reject 호출 10 - (then 실행, v: 10000 받음)resolve 호출 10000
+
+      //======================================================================================================
+      //#3) then에서 throw -> catch로 감
+      //비교
+      new Promise((rs, rj) => {
+        console.log(1);
+        rs(10);
+        rj(10); //resolve 수행중이므로 reject 무시됨
+        console.log("오류생성");
+      })
+        //resolve 수행중이므로 then 실행
+        .then((v) => {
+          //v = 10
+          console.log("resolve 호출");
+          console.log(v); //v = 10
+          throw new Error(100000); //throw 로 에러발생시킴 -> catch 로 갈 수 있음 ==> reject 와 동일한 의미
+          return 100000; //100000 리턴하고 끝 -> catch 로 가려면??? => throw 에러 => but 이러면 catch 걸리므로 이 코드는 실행 X
+        })
+        //catch - new Error(100000) 객체를 받음
+        .catch((e) => {
+          console.log("reject 호출");
+          console.log(e.message); //v = Error(100000)
+          return 10000;
+        });
+
+      //1 오류생성 (resolve 실행-then)resolve 호출 10 (throw -> catch 실행)reject 호출 100000
+
+      //에러 없이 정상 실행되는 경우
+      //Promise 안에서 reject가 발생X, throw도 X, 그냥 resolve로 끝나는 경우
+
+      new Promise((rs, rj) => {
+        console.log(2);
+        rs(20); //정상 실행
+      }).then((v) => {
+        console.log(v); //20 출력
+      });
+
+      new Promise((rs, rj) => {
+        console.log(3);
+        rj(30); //에러 발생 -> 30 이란 값으로 에러 발생시킴
+        //reject 을 호출하면 그 값이 catch 의 매개변수인 에러로 전달
+      }).catch((v) => {
+        console.log(v); //v : 30
+      });
+
+      // 1 2 3 / 10 20 30
+
+      /**
+       * resolve와 reject는 then/catch 실행을 “예약”
+       * catch 든 then 이든 먼저 등록된 순서대로 동작함
+       * resolve 상태면 then 실행, reject 상태면 catch 실행
+       * then/catch는 항상 새로운 Promise를 반환
+       * catch는 에러를 처리하고 정상값을 리턴하기 때문에 다음 then이 실행된다.
+       * catch는 reject → resolve로 바꿔서 다음(2번 프로미스의) then에게 넘김
+       * 이때 then 은 promise 의 resolve 값이 아닌,
+       * catch 에서 받은 리턴값을 가져옴
+       * then 내부에서 throw하면 reject로 바뀌어 catch로 간다.
+       */
+    </script>
+  </body>
+</html>

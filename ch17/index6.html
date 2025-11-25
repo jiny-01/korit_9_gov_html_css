@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /**
+       * async / await
+       *
+       */
+      //원할 때 promise 를 생성하기 위해 함수 정의
+      //num 에 들어오는 값에 따라 프로미스가 실행됨
+      //ex) num = 11 이면 홀수이므로 rs 실행 => "홀수" 출력됨
+      function callPromise(num) {
+        return new Promise((rs, rj) => {
+          console.log("프로미스 생성");
+          if (num % 2 !== 0) {
+            rs("홀수");
+          } else {
+            rj(new Error("짝수")); //주로 reject 에는 에러객체 생성
+          }
+        });
+      }
+
+      const p1 = callPromise(); //프로미스 생성
+      callPromise(11).then((v) => console.log(v)); //11이면 홀수이므로 rs 실행 => 출력 : 홀수
+      callPromise(12).then((e) => console.error(e));
+
+      callPromise(11) /*(1)*/
+        .then((v) => console.log(v))
+        .catch((e) => console.error(e));
+      callPromise(12) /*(2)*/
+        .then((v) => console.log(v))
+        .catch((e) => console.error(e));
+
+      //=> axios 와 같은 원리
+
+      //async -> 비동기함수, 즉 promise 를 갖는다
+      async function callPromise2(num) {
+        if (num % 2 !== 0) {
+          return "홀수"; //return -> resolve 값
+        } else {
+          throw new Error("짝수"); //reject
+        }
+      }
+      callPromise2(11).then((v) => console.log(v)); //12이면 홀수이므로 rs 실행 => 출력 : 짝수
+      callPromise2(12).then((e) => console.error(e));
+
+      callPromise2(11)
+        .then((v) => console.log(v))
+        .catch((e) => console.error(e));
+      callPromise2(12)
+        .then((v) => console.log(v))
+        .catch((e) => console.error(e));
+
+      async function callPromise3(num) {
+        if (num % 2 !== 0) {
+          return "홀수";
+        } else {
+          throw new Error("짝수");
+        }
+      }
+
+      // await 은 항상 promise 앞에만
+      // promise 가 다 처리해서 리턴해줄 때까지 기다림
+      // await 이 없다면 callPromise3(11) 의 값이 없을 것
+      //-> 그냥 프로미스 객체일 것
+      // await 이 있으면 then 의 매개변수로 넘겨주는 프로미스의 리턴값이 있을 것
+      async function asyncFunction() {
+        try {
+          const v = await callPromise3(11);
+          console.log(v); //여기서 출력하는건 resolve 와 then 이 실행된 것
+        } catch (e) {
+          console.error(3);
+        }
+
+        try {
+          const v = await callPromise3(12);
+          console.log(v);
+        } catch (e) {
+          console.error(3);
+        }
+      }
+
+      asyncFunction();
+    </script>
+  </body>
+</html>
