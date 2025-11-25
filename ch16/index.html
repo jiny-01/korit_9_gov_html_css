@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //배열
+      const names = ["김준일", "김준이", "김준삼"];
+      const newName = "김준사";
+
+      names.push(newName);
+      console.log(names);
+
+      const popName = names.pop();
+      console.log(popName);
+      console.log(names);
+      names.push("김준오");
+      names.push("김준육");
+      names.push("김준칠");
+      console.log(names);
+      console.log(names.slice(0, 2));
+      console.log(names.slice(3));
+      console.log([...names.slice(0, 2), ...names.slice(3)]);
+      function remove(arr, index) {
+        //지우고 싶은 인덱스만 지우고 배열 만들 때
+        if (index === 0 && arr.length === 1) {
+          //0번 인덱스밖에 없거나 크기 1이면
+          return [];
+        }
+
+        if (index === 0) {
+          return arr.slice(1);
+        }
+        if (index === arr.length - 1) {
+          return arr.slice(0, arr.length - 1);
+        }
+        return [...arr.slice(0, index), ...arr.slice(index + 1)];
+      }
+
+      // splice 가 remove 역할
+      console.log("!!!!");
+      console.log("삭제 전: " + names);
+      console.log(names.splice(2, 1)); //2번 인덱스부터 1개만 지워라
+      console.log("삭제 후: " + names);
+
+      console.log(names[0]);
+      //for-each 반복문
+      for (let n of names) {
+        console.log(n);
+      }
+
+      //for 반복문
+      for (let i = 0; i < names.length; i++) {
+        console.log(names[i]);
+      }
+
+      names.forEach()
+
+      names.splice();
+    </script>
+  </body>
+</html>
